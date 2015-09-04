@@ -1,4 +1,4 @@
-import Component from './Component';
+import PageClick from './PageClick';
 
 
-export default Component;
+export default PageClick;
