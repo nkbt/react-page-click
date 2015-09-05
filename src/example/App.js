@@ -1,60 +1,33 @@
 import React from 'react';
-import PageClick from '../..';
-
-const styles = {
-  popup: {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    width: '40%',
-    height: '40%',
-    marginTop: '-20%',
-    marginLeft: '-20%',
-
-    fontSize: 30,
-    textAlign: 'center',
-
-    background: 'rgba(0, 0, 0, 0.3)',
-    borderRadius: 10
-  },
-  content: {
-    padding: 50
-  }
-};
+import Modal from './Modal.js';
 
 
 const App = React.createClass({
   getInitialState() {
     return {
-      opened: false
+      showModal: false
     };
   },
 
-  onButtonClick() {
-    this.setState({opened: true});
-  },
-
-  onPageClick() {
-    this.setState({opened: false});
-  },
 
   render() {
-    const {opened} = this.state;
+    const {showModal} = this.state;
 
     return (
       <div>
-        <button onClick={this.onButtonClick}>Open Popup</button>
+        <button onClick={() => this.setState({showModal: true})}>
+          Open Modal
+        </button>
 
-        {opened ? (
-          <PageClick onClick={this.onPageClick}>
-            <div style={styles.popup}>
-              <div style={styles.content}>Opened</div>
-            </div>
-          </PageClick>
+        {showModal ? (
+          <Modal onClose={() => this.setState({showModal: false})}>
+            Modal content
+          </Modal>
         ) : null}
       </div>
     );
   }
 });
+
 
 export default App;
