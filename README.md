@@ -46,7 +46,7 @@ Show only when `this.state.opened` and hide by click anywhere on a page outside 
 ```
 
 
-## Example
+## Modal window example
 
 ```js
 import React from 'react';
@@ -66,43 +66,65 @@ const styles = {
     fontSize: 30,
     textAlign: 'center',
 
-    background: 'rgba(0, 0, 0, 0.3)',
+    background: 'rgba(255, 255, 255, 0.9)',
     borderRadius: 10
+  },
+  shade: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: 'rgba(0, 0, 0, 0.3)'
   },
   content: {
     padding: 50
   }
 };
 
+const Modal = React.createClass({
+  propTypes: {
+    onClose: React.PropTypes.func.isRequired
+  },
+
+  render() {
+    const {onClose, ...props} = this.props;
+
+    return (
+      <div>
+        <div style={styles.shade} />
+        <PageClick onClick={this.props.onClose}>
+          <div style={styles.popup}>
+            <div style={styles.content} {...props} />
+          </div>
+        </PageClick>
+      </div>
+    );
+  }
+});
+
 
 const App = React.createClass({
   getInitialState() {
     return {
-      opened: false
+      showModal: false
     };
   },
 
-  onButtonClick() {
-    this.setState({opened: true});
-  },
-
-  onPageClick() {
-    this.setState({opened: false});
-  },
 
   render() {
-    const {opened} = this.state;
+    const {showModal} = this.state;
 
     return (
       <div>
-        <button onClick={this.onButtonClick}>Open Popup</button>
+        <button onClick={() => this.setState({showModal: true})}>
+          Open Modal
+        </button>
 
-        {opened ? (
-          <PageClick onClick={this.onPageClick}>
-            <div style={styles.popup}>
-              <div style={styles.content}>Opened</div>
-            </div>
-          </PageClick>
+        {showModal ? (
+          <Modal onClose={() => this.setState({showModal: false})}>
+            Modal content
+          </Modal>
         ) : null}
       </div>
     );
@@ -131,7 +153,7 @@ Default value is `true` which means that click will be detected only outside of 
 
 #### `children`: PropTypes.node.isRequired
 
-The only child element is required. It must be a valid DOM element, otherwise it is not possible to capture clicks on it. 
+The only child element is required. It must be a valid DOM element, otherwise it is not possible to capture clicks on it.
 
 
 ## Development and testing
@@ -141,7 +163,7 @@ npm install
 npm start
 ```
 
-Then 
+Then
 
 ```bash
 open http://localhost:8080
