@@ -1,6 +1,6 @@
 {
   "name": "react-page-click",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React component-wrapper to detect page clicks (outside of wrapped element).",
   "main": "lib/index.js",
   "scripts": {
