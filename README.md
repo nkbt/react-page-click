@@ -23,13 +23,17 @@ npm install --save react-page-click
 
 ### bower
 
-Coming soon
-
+```sh
+bower install --save react-page-click
+```
 
 ## Demo
 
 [http://nkbt.github.io/react-page-click/example](http://nkbt.github.io/react-page-click/example)
 
+## Codepen demo
+
+[http://codepen.io/nkbt/pen/JYEPVQ](http://codepen.io/nkbt/pen/JYEPVQ?editors=101)
 
 ## Usage
 
@@ -158,14 +162,15 @@ The only child element is required. It must be a valid DOM element, otherwise it
 
 ## Development and testing
 
+To run example covering all `PageClick` features, use `npm start`, which will compile `src/example/Example.js`
+
 ```bash
+git clone git@github.com:nkbt/react-page-click.git
+cd react-page-click
 npm install
 npm start
-```
 
-Then
-
-```bash
+# then
 open http://localhost:8080
 ```
 
