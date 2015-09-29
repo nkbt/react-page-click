@@ -59,7 +59,7 @@ describe('PageClick', () => {
     });
 
 
-    it('should notify on clicks ouside of the element', () => {
+    it('should notify on clicks outside of the element', () => {
       onMouseDown();
 
       expect(onClick).toHaveBeenCalled();
@@ -92,6 +92,13 @@ describe('PageClick', () => {
       TestUtils.Simulate.mouseUp(span);
 
       expect(pageClick.insideClick).toBeFalsy();
+    });
+
+
+    it('should pass-through click event and other arguments', () => {
+      onMouseDown(1, 2, 3);
+
+      expect(onClick).toHaveBeenCalledWith(1, 2, 3);
     });
   });
 

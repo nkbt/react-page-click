@@ -35,11 +35,11 @@ const PageClick = React.createClass({
   },
 
 
-  onDocumentClick() {
+  onDocumentClick(...args) {
     if (this.insideClick) {
       return;
     }
-    this.props.onClick();
+    this.props.onClick(...args);
   },
 
 
