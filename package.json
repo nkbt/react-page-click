@@ -39,7 +39,10 @@
     "react",
     "document click",
     "popup",
-    "page click"
+    "page click",
+    "click",
+    "outside",
+    "click outside"
   ],
   "author": "Nik Butenko <nik@butenko.me> (http://butenko.me/)",
   "license": "MIT",
