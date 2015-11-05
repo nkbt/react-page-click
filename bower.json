@@ -13,7 +13,10 @@
     "react",
     "document click",
     "popup",
-    "page click"
+    "page click",
+    "click",
+    "outside",
+    "click outside"
   ],
   "authors": [
     "Nik Butenko <nik@butenko.me> (http://butenko.me/)"
