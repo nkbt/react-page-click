@@ -15,17 +15,40 @@ React component-wrapper to detect page clicks (outside of wrapped element).
 
 ## Installation
 
-### npm
+### NPM
 
 ```sh
 npm install --save react-page-click
 ```
 
-### bower
 
+### Bower:
 ```sh
 bower install --save react-page-click
 ```
+
+or in `bower.json`
+
+```json
+{
+  "dependencies": {
+    "react-page-click": "https://npmcdn.com/react-page-click/build/react-page-click.js"
+  }
+}
+```
+
+then include as
+```html
+<script src="bower_components/react-page-click/index.js"></script>
+```
+
+
+### 1998 Script Tag:
+```html
+<script src="https://npmcdn.com/react-page-click/build/react-page-click.js"></script>
+(Module exposed as `PageClick`)
+```
+
 
 ## Demo
 
@@ -54,6 +77,7 @@ Show only when `this.state.opened` and hide by click anywhere on a page outside 
 
 ```js
 import React from 'react';
+import ReactDOM from 'react-dom';
 import PageClick from 'react-page-click';
 
 
@@ -135,10 +159,10 @@ const App = React.createClass({
   }
 });
 
-
-React.render(<App />, document.body);
+const appRoot = document.createElement('div');
+document.body.appendChild(appRoot);
+ReactDOM.render(<App />, appRoot);
 ```
-
 
 ## Options
 
@@ -172,6 +196,18 @@ npm start
 
 # then
 open http://localhost:8080
+```
+
+## Tests
+
+```bash
+npm test
+
+# to run tests in watch mode for development
+npm run test:dev
+
+# to generate test coverage (./reports/coverage)
+npm run test:cov
 ```
 
 ## License

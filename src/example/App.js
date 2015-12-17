@@ -10,17 +10,29 @@ const App = React.createClass({
   },
 
 
+  showModal() {
+    this.setState({showModal: true});
+  },
+
+
+  hideModal() {
+    this.setState({showModal: false});
+  },
+
+
   render() {
     const {showModal} = this.state;
 
     return (
       <div>
-        <button onClick={() => this.setState({showModal: true})}>
+        <h1>PageClick</h1>
+
+        <button onClick={this.showModal}>
           Open Modal
         </button>
 
         {showModal ? (
-          <Modal onClose={() => this.setState({showModal: false})}>
+          <Modal onClose={this.hideModal}>
             Modal content
           </Modal>
         ) : null}
