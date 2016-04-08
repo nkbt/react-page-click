@@ -59,7 +59,13 @@ const PageClick = React.createClass({
       onMouseUp: this.onMouseUp
     } : {};
 
-    return React.cloneElement(React.Children.only(this.props.children), props);
+    if (React.Children.count(this.props.children) > 1) {
+      return (<div>
+        {React.Children.map(this.props.children, (child) => React.cloneElement(child, props))}
+      </div>)
+    } else {
+      return React.cloneElement(React.Children.only(this.props.children), props);
+    }
   }
 });
 
