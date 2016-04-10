@@ -7,6 +7,7 @@ test('PageClick', t => {
   t.end();
 });
 
+/* eslint no-warning-comments: 0 */
 /*
 TODO: Convert to Tape tests
 
