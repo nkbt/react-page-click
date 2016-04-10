@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from './Modal.js';
+import {name} from '../../../package.json';
 
 
 const App = React.createClass({
@@ -25,7 +26,7 @@ const App = React.createClass({
 
     return (
       <div>
-        <h1>PageClick</h1>
+        <h1>{name}</h1>
 
         <button onClick={this.showModal}>
           Open Modal
