@@ -19,7 +19,6 @@ React component-wrapper to detect page clicks (outside of wrapped element).
 ### NPM
 
 ```sh
-npm install --save react-page-click
 npm install --save react react-page-click
 ```
 
@@ -28,7 +27,6 @@ Don't forget to manually install peer dependencies (`react`) if you use npm@3.
 
 ### Bower:
 ```sh
-bower install --save react-page-click
 bower install --save https://npmcdn.com/react-page-click/bower.zip
 ```
 
