@@ -1,11 +1,12 @@
-# react-page-click
+# react-page-click [![npm](https://img.shields.io/npm/v/react-page-click.svg?style=flat-square)](https://www.npmjs.com/package/react-page-click)
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nkbt/help)
+[![Gitter](https://img.shields.io/gitter/room/nkbt/help.svg?style=flat-square)](https://gitter.im/nkbt/help)
 
-[![Circle CI](https://circleci.com/gh/nkbt/react-page-click.svg?style=svg)](https://circleci.com/gh/nkbt/react-page-click)
-[![Coverage Status](https://coveralls.io/repos/nkbt/react-page-click/badge.svg?branch=master)](https://coveralls.io/r/nkbt/react-page-click?branch=master)
-[![Dependency Status](https://david-dm.org/nkbt/react-page-click.svg)](https://david-dm.org/nkbt/react-page-click)
-[![devDependency Status](https://david-dm.org/nkbt/react-page-click/dev-status.svg)](https://david-dm.org/nkbt/react-page-click#info=devDependencies)
+[![CircleCI](https://img.shields.io/circleci/project/nkbt/react-page-click.svg?style=flat-square&label=nix-build)](https://circleci.com/gh/nkbt/react-page-click)
+[![AppVeyor](https://img.shields.io/appveyor/ci/nkbt/react-page-click.svg?style=flat-square&label=win-build)](https://ci.appveyor.com/project/nkbt/react-page-click)
+[![Coverage](https://img.shields.io/codecov/c/github/nkbt/react-page-click.svg?style=flat-square)](https://codecov.io/github/nkbt/react-page-click?branch=master)
+[![Dependencies](https://img.shields.io/david/nkbt/react-page-click.svg?style=flat-square)](https://david-dm.org/nkbt/react-page-click)
+[![Dev Dependencies](https://img.shields.io/david/dev/nkbt/react-page-click.svg?style=flat-square)](https://david-dm.org/nkbt/react-page-click#info=devDependencies)
 
 React component-wrapper to detect page clicks (outside of wrapped element).
 
@@ -18,13 +19,15 @@ React component-wrapper to detect page clicks (outside of wrapped element).
 ### NPM
 
 ```sh
-npm install --save react-page-click
+npm install --save react react-page-click
 ```
+
+Don't forget to manually install peer dependencies (`react`) if you use npm@3.
 
 
 ### Bower:
 ```sh
-bower install --save react-page-click
+bower install --save https://npmcdn.com/react-page-click/bower.zip
 ```
 
 or in `bower.json`
@@ -32,19 +35,21 @@ or in `bower.json`
 ```json
 {
   "dependencies": {
-    "react-page-click": "https://npmcdn.com/react-page-click/build/react-page-click.js"
+    "react-page-click": "https://npmcdn.com/react-page-click/bower.zip"
   }
 }
 ```
 
 then include as
 ```html
-<script src="bower_components/react-page-click/index.js"></script>
+<script src="bower_components/react/react.js"></script>
+<script src="bower_components/react-page-click/build/react-page-click.js"></script>
 ```
 
 
 ### 1998 Script Tag:
 ```html
+<script src="https://npmcdn.com/react/dist/react.js"></script>
 <script src="https://npmcdn.com/react-page-click/build/react-page-click.js"></script>
 (Module exposed as `PageClick`)
 ```
@@ -185,6 +190,9 @@ The only child element is required. It must be a valid DOM element, otherwise it
 
 
 ## Development and testing
+
+Currently is being developed and tested with the latest stable `Node 5` on `OSX` and `Windows`.
+Should be ok with Node 4, but not guaranteed.
 
 To run example covering all `PageClick` features, use `npm start`, which will compile `src/example/Example.js`
 
