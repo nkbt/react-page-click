@@ -8,8 +8,6 @@ const PageClick = React.createClass({
     onClick: React.PropTypes.func.isRequired,
     onMouseDown: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
     outsideOnly: React.PropTypes.bool
   },
 
@@ -27,8 +25,10 @@ const PageClick = React.createClass({
 
 
   componentDidMount() {
-    global.window.addEventListener('mousedown', this.onDocumentClick, false);
     global.window.addEventListener('touchstart', this.onDocumentClick, false);
+    global.window.addEventListener('touchend', this.onDocumentMouseUp, false);
+    global.window.addEventListener('mousedown', this.onDocumentClick, false);
+    global.window.addEventListener('mouseup', this.onDocumentMouseUp, false);
   },
 
 
@@ -36,8 +36,10 @@ const PageClick = React.createClass({
 
 
   componentWillUnmount() {
-    global.window.removeEventListener('mousedown', this.onDocumentClick, false);
     global.window.removeEventListener('touchstart', this.onDocumentClick, false);
+    global.window.removeEventListener('touchend', this.onDocumentMouseUp, false);
+    global.window.removeEventListener('mousedown', this.onDocumentClick, false);
+    global.window.removeEventListener('mouseup', this.onDocumentMouseUp, false);
   },
 
 
@@ -49,18 +51,15 @@ const PageClick = React.createClass({
   },
 
 
+  onDocumentMouseUp() {
+    this.insideClick = false;
+  },
+
+
   onMouseDown(...args) {
     this.insideClick = true;
     if (this.props.onMouseDown) {
       this.props.onMouseDown(...args);
-    }
-  },
-
-
-  onMouseUp(...args) {
-    this.insideClick = false;
-    if (this.props.onMouseUp) {
-      this.props.onMouseUp(...args);
     }
   },
 
@@ -73,20 +72,10 @@ const PageClick = React.createClass({
   },
 
 
-  onTouchEnd(...args) {
-    this.insideClick = false;
-    if (this.props.onTouchEnd) {
-      this.props.onTouchEnd(...args);
-    }
-  },
-
-
   render() {
     const props = this.props.outsideOnly ? {
       onMouseDown: this.onMouseDown,
-      onMouseUp: this.onMouseUp,
-      onTouchStart: this.onTouchStart,
-      onTouchEnd: this.onTouchEnd
+      onTouchStart: this.onTouchStart
     } : {};
 
     return React.cloneElement(React.Children.only(this.props.children), props);
