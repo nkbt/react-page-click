@@ -27,8 +27,10 @@ const PageClick = React.createClass({
 
 
   componentDidMount() {
-    global.window.addEventListener('mousedown', this.onDocumentClick, false);
     global.window.addEventListener('touchstart', this.onDocumentClick, false);
+    global.window.addEventListener('touchend', this.onDocumentMouseUp, false);
+    global.window.addEventListener('mousedown', this.onDocumentClick, false);
+    global.window.addEventListener('mouseup', this.onDocumentMouseUp, false);
   },
 
 
@@ -36,8 +38,10 @@ const PageClick = React.createClass({
 
 
   componentWillUnmount() {
-    global.window.removeEventListener('mousedown', this.onDocumentClick, false);
     global.window.removeEventListener('touchstart', this.onDocumentClick, false);
+    global.window.removeEventListener('touchend', this.onDocumentMouseUp, false);
+    global.window.removeEventListener('mousedown', this.onDocumentClick, false);
+    global.window.removeEventListener('mouseup', this.onDocumentMouseUp, false);
   },
 
 
@@ -46,6 +50,11 @@ const PageClick = React.createClass({
       return;
     }
     this.props.onClick(...args);
+  },
+
+
+  onDocumentMouseUp() {
+    this.insideClick = false;
   },
 
 
@@ -58,7 +67,6 @@ const PageClick = React.createClass({
 
 
   onMouseUp(...args) {
-    this.insideClick = false;
     if (this.props.onMouseUp) {
       this.props.onMouseUp(...args);
     }
@@ -74,7 +82,6 @@ const PageClick = React.createClass({
 
 
   onTouchEnd(...args) {
-    this.insideClick = false;
     if (this.props.onTouchEnd) {
       this.props.onTouchEnd(...args);
     }
