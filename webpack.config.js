@@ -4,6 +4,8 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const host = process.env.NODE_HOST || 'localhost';
+const port = process.env.NODE_PORT || 8080;
 
 
 const loaders = [
@@ -37,7 +39,7 @@ const development = {
 
   entry: [
     './src/example/Example.js',
-    'webpack-dev-server/client?http://localhost:8080'
+    `webpack-dev-server/client?http://${host}:${port}`
   ],
   output: {filename: 'bundle.js', path: path.resolve('example')},
   plugins: [
@@ -53,6 +55,8 @@ const development = {
   resolve,
   stats,
   devServer: {
+    host,
+    port,
     historyApiFallback: true,
     stats: {
       // Do not show list of hundreds of files included in a bundle

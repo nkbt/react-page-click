@@ -33,16 +33,17 @@ const styles = {
 
 const Modal = React.createClass({
   propTypes: {
-    onClose: React.PropTypes.func.isRequired
+    onClose: React.PropTypes.func.isRequired,
+    useEndEvent: React.PropTypes.bool
   },
 
   render() {
-    const {onClose, ...props} = this.props;
+    const {onClose, useEndEvent, ...props} = this.props;
 
     return (
       <div>
         <div style={styles.shade} />
-        <PageClick onClick={this.props.onClose}>
+        <PageClick onClick={onClose} useEndEvent={useEndEvent}>
           <div style={styles.popup}>
             <div style={styles.content} {...props} />
           </div>
