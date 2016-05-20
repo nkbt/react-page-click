@@ -8,8 +8,6 @@ const PageClick = React.createClass({
     onClick: React.PropTypes.func.isRequired,
     onMouseDown: React.PropTypes.func,
     onTouchStart: React.PropTypes.func,
-    onMouseUp: React.PropTypes.func,
-    onTouchEnd: React.PropTypes.func,
     outsideOnly: React.PropTypes.bool
   },
 
@@ -66,13 +64,6 @@ const PageClick = React.createClass({
   },
 
 
-  onMouseUp(...args) {
-    if (this.props.onMouseUp) {
-      this.props.onMouseUp(...args);
-    }
-  },
-
-
   onTouchStart(...args) {
     this.insideClick = true;
     if (this.props.onTouchStart) {
@@ -81,19 +72,10 @@ const PageClick = React.createClass({
   },
 
 
-  onTouchEnd(...args) {
-    if (this.props.onTouchEnd) {
-      this.props.onTouchEnd(...args);
-    }
-  },
-
-
   render() {
     const props = this.props.outsideOnly ? {
       onMouseDown: this.onMouseDown,
-      onMouseUp: this.onMouseUp,
-      onTouchStart: this.onTouchStart,
-      onTouchEnd: this.onTouchEnd
+      onTouchStart: this.onTouchStart
     } : {};
 
     return React.cloneElement(React.Children.only(this.props.children), props);
