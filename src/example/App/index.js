@@ -6,7 +6,8 @@ import {name} from '../../../package.json';
 const App = React.createClass({
   getInitialState() {
     return {
-      showModal: false
+      showModal: false,
+      showLazyModal: false
     };
   },
 
@@ -21,8 +22,17 @@ const App = React.createClass({
   },
 
 
+  showLazyModal() {
+    this.setState({showLazyModal: true});
+  },
+
+
+  hideLazyModal() {
+    this.setState({showLazyModal: false});
+  },
+
   render() {
-    const {showModal} = this.state;
+    const {showModal, showLazyModal} = this.state;
 
     return (
       <div>
@@ -31,10 +41,24 @@ const App = React.createClass({
         <button onClick={this.showModal}>
           Open Modal
         </button>
+        &nbsp;Closes on mouse down or touch start events
+
+        <br />
+
+        <button onClick={this.showLazyModal}>
+          Open Lazy Model
+        </button>
+        &nbsp;Closes on mouse down or touch end events
 
         {showModal ? (
           <Modal onClose={this.hideModal}>
             Modal content
+          </Modal>
+        ) : null}
+
+        {showLazyModal ? (
+          <Modal onClose={this.hideLazyModal} notifyOnTouchEnd>
+            Lazy Modal content
           </Modal>
         ) : null}
       </div>

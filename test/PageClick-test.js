@@ -18,7 +18,7 @@ describe('PageClick', () => {
 
 
   it('should require the only child to be present', () => {
-    expect(() => TestUtils.renderIntoDocument(<PageClick onClick={() => {}} />))
+    expect(() => TestUtils.renderIntoDocument(<PageClick notify={() => {}} />))
       .toThrow();
   });
 
@@ -31,7 +31,7 @@ describe('PageClick', () => {
 
 
     it('should subscribe to mousedown on render', () => {
-      TestUtils.renderIntoDocument(<PageClick onClick={() => {}}><span>Test</span></PageClick>);
+      TestUtils.renderIntoDocument(<PageClick notify={() => {}}><span>Test</span></PageClick>);
 
       expect(global.window.addEventListener).toHaveBeenCalled();
       expect(global.window.addEventListener.calls.mostRecent().args[0]).toEqual('mousedown');
@@ -41,7 +41,7 @@ describe('PageClick', () => {
     it('should unsubscribe on destroy', () => {
       const div = document.createElement('div');
 
-      React.render(<PageClick onClick={() => {}}><span>Test</span></PageClick>, div);
+      React.render(<PageClick notify={() => {}}><span>Test</span></PageClick>, div);
 
       const onMouseDown = global.window.addEventListener.calls.mostRecent().args[1];
 
@@ -56,13 +56,13 @@ describe('PageClick', () => {
 
 
   describe('Notification on clicks', () => {
-    let pageClick, onClick, onMouseDown;
+    let pageClick, notify, onMouseDown;
 
     beforeEach(() => {
       spyOn(global.window, 'addEventListener');
-      onClick = jasmine.createSpy('onClick');
+      notify = jasmine.createSpy('notify');
       pageClick = TestUtils.renderIntoDocument(
-        <PageClick onClick={onClick}><span>Test</span></PageClick>);
+        <PageClick notify={notify}><span>Test</span></PageClick>);
       onMouseDown = global.window.addEventListener.calls.mostRecent().args[1];
     });
 
@@ -70,7 +70,7 @@ describe('PageClick', () => {
     it('should notify on clicks outside of the element', () => {
       onMouseDown();
 
-      expect(onClick).toHaveBeenCalled();
+      expect(notify).toHaveBeenCalled();
     });
 
 
@@ -80,7 +80,7 @@ describe('PageClick', () => {
       TestUtils.Simulate.mouseDown(span);
       onMouseDown();
 
-      expect(onClick).not.toHaveBeenCalled();
+      expect(notify).not.toHaveBeenCalled();
     });
 
 
@@ -106,19 +106,19 @@ describe('PageClick', () => {
     it('should pass-through click event and other arguments', () => {
       onMouseDown(1, 2, 3);
 
-      expect(onClick).toHaveBeenCalledWith(1, 2, 3);
+      expect(notify).toHaveBeenCalledWith(1, 2, 3);
     });
   });
 
 
   describe('Notification on clicks including clicks inside', () => {
-    let pageClick, onClick, onMouseDown;
+    let pageClick, notify, onMouseDown;
 
     beforeEach(() => {
       spyOn(global.window, 'addEventListener');
-      onClick = jasmine.createSpy('onClick');
+      notify = jasmine.createSpy('notify');
       pageClick = TestUtils.renderIntoDocument(
-        <PageClick onClick={onClick} outsideOnly={false}><span>Test</span></PageClick>);
+        <PageClick notify={notify} outsideOnly={false}><span>Test</span></PageClick>);
       onMouseDown = global.window.addEventListener.calls.mostRecent().args[1];
     });
 
@@ -129,7 +129,7 @@ describe('PageClick', () => {
       TestUtils.Simulate.mouseDown(span);
       onMouseDown();
 
-      expect(onClick).toHaveBeenCalled();
+      expect(notify).toHaveBeenCalled();
     });
   });
 });
