@@ -48,7 +48,7 @@ const App = React.createClass({
         <button onClick={this.showLazyModal}>
           Open Lazy Model
         </button>
-        &nbsp;Closes on mouse up or touch end events
+        &nbsp;Closes on mouse down or touch end events
 
         {showModal ? (
           <Modal onClose={this.hideModal}>
@@ -57,7 +57,7 @@ const App = React.createClass({
         ) : null}
 
         {showLazyModal ? (
-          <Modal onClose={this.hideLazyModal} useEndEvent>
+          <Modal onClose={this.hideLazyModal} notifyOnTouchEnd>
             Lazy Modal content
           </Modal>
         ) : null}
