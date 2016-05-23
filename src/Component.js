@@ -54,7 +54,7 @@ export const ReactPageClick = React.createClass({
 
 
   onDocumentMouseDown(...args) {
-    if (this.insideClick || this.props.notifyOnTouchEnd) {
+    if (this.insideClick) {
       return;
     }
     this.props.notify(...args);
