@@ -34,7 +34,7 @@ bower install --save https://npmcdn.com/react-page-click/bower.zip
 ```html
 <script src="https://npmcdn.com/react/dist/react.js"></script>
 <script src="https://npmcdn.com/react-page-click/build/react-page-click.js"></script>
-(Module exposed as `PageClick`)
+(Module exposed as `ReactPageClick`)
 ```
 
 
@@ -52,11 +52,11 @@ Show only when `this.state.opened` and hide by click anywhere on a page outside 
 
 ```jsx
 {this.state.opened ? (
-  <PageClick notify={() => this.setState({opened: false})}>
+  <ReactPageClick notify={() => this.setState({opened: false})}>
     <div className="popup">
       Some Popup content
     </div>
-  </PageClick>
+  </ReactPageClick>
 ) : null}
 ```
 
@@ -66,7 +66,7 @@ Show only when `this.state.opened` and hide by click anywhere on a page outside 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {PageClick} from 'react-page-click';
+import {ReactPageClick} from 'react-page-click';
 
 
 const styles = {
@@ -109,11 +109,11 @@ const Modal = React.createClass({
     return (
       <div>
         <div style={styles.shade} />
-        <PageClick notify={this.props.onClose}>
+        <ReactPageClick notify={this.props.onClose}>
           <div style={styles.popup}>
             <div style={styles.content} {...props} />
           </div>
-        </PageClick>
+        </ReactPageClick>
       </div>
     );
   }
@@ -187,7 +187,7 @@ capture events on it.
 
 Currently is being developed and tested with the latest stable `Node 6` on `OSX` and `Windows`.
 
-To run example covering all `PageClick` features, use `npm start dev`, which will compile `src/example/Example.js`
+To run example covering all `ReactPageClick` features, use `npm start dev`, which will compile `src/example/Example.js`
 
 ```bash
 git clone git@github.com:nkbt/react-page-click.git

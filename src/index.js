@@ -1,1 +1,1 @@
-export {PageClick} from './Component';
+export {ReactPageClick} from './Component';

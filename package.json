@@ -4,7 +4,7 @@
   "description": "React component-wrapper to detect page events (mousedown or touchstart/touchend) outside of wrapped element.",
   "main": "lib/index.js",
   "config": {
-    "component": "PageClick"
+    "component": "ReactPageClick"
   },
   "scripts": {
     "start": "p-s --config react-component-template/package-scripts -s",

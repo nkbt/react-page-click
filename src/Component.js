@@ -9,7 +9,7 @@ const extractCoordinates = ({changedTouches}) =>
   ({x: changedTouches[0].screenX, y: changedTouches[0].screenY});
 
 
-export const PageClick = React.createClass({
+export const ReactPageClick = React.createClass({
   propTypes: {
     children: React.PropTypes.node.isRequired,
     notify: React.PropTypes.func.isRequired,
