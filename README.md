@@ -8,7 +8,7 @@
 [![Dependencies](https://img.shields.io/david/nkbt/react-page-click.svg?style=flat-square)](https://david-dm.org/nkbt/react-page-click)
 [![Dev Dependencies](https://img.shields.io/david/dev/nkbt/react-page-click.svg?style=flat-square)](https://david-dm.org/nkbt/react-page-click#info=devDependencies)
 
-React component-wrapper to detect page clicks (outside of wrapped element).
+React component-wrapper to detect page events (mousedown or touchstart/touchend) outside of wrapped element.
 
 
 ![React Page Click](src/example/react-page-click.gif)
@@ -69,7 +69,7 @@ Show only when `this.state.opened` and hide by click anywhere on a page outside 
 
 ```js
 {this.state.opened ? (
-  <PageClick onClick={() => this.setState({opened: false})}>
+  <PageClick notify={() => this.setState({opened: false})}>
     <div className="popup">
       Some Popup content
     </div>
@@ -126,7 +126,7 @@ const Modal = React.createClass({
     return (
       <div>
         <div style={styles.shade} />
-        <PageClick onClick={this.props.onClose}>
+        <PageClick notify={this.props.onClose}>
           <div style={styles.popup}>
             <div style={styles.content} {...props} />
           </div>
@@ -172,21 +172,31 @@ ReactDOM.render(<App />, appRoot);
 ## Options
 
 
-#### `onClick`: PropTypes.func.isRequired
+#### `notify`: PropTypes.func.isRequired
 
-Function called when click is detected
+Function called when mousedown or touchstart/touchend is detected
+
+
+#### `notifyOnTouchEnd`: PropTypes.bool (default: false)
+
+Should `notify` be called when on touchstart or touchend on a touch device. This can be useful when
+you only want to call `notify` when the user taps, instead of scrolling or zooming.
+
+Default value is `false` which means that `notify` will get triggered on mousedown or touchstart.
 
 
 #### `outsideOnly`: PropTypes.bool (default: true)
 
-Should `onClick` be called when click is detected outside of wrapped element or anywhere including it?
+Should `notify` be called when mousedown or touchstart/touchend is detected outside of wrapped
+element or anywhere including it?
 
-Default value is `true` which means that click will be detected only outside of wrapped element.
+Default value is `true` which means that events will be detected only outside of wrapped element.
 
 
 #### `children`: PropTypes.node.isRequired
 
-The only child element is required. It must be a valid DOM element, otherwise it is not possible to capture clicks on it.
+The only child element is required. It must be a valid DOM element, otherwise it is not possible to
+capture events on it.
 
 
 ## Development and testing
