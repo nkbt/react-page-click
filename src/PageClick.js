@@ -3,6 +3,9 @@ import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin
 
 const MAX_MOVE = 20;
 
+const extractCoordinates = ({changedTouches}) =>
+  ({x: changedTouches[0].screenX, y: changedTouches[0].screenY});
+
 const PageClick = React.createClass({
   propTypes: {
     children: React.PropTypes.node.isRequired,
@@ -26,16 +29,20 @@ const PageClick = React.createClass({
     this.insideClick = false;
     this.touchStart = null;
     this.justCalledOnClick = false;
+    this.clickHandlerTimeout = null;
+    this.resetInsideClickTimeout = null;
+    this.resetJustCalledOnClickTimeout = null;
   },
 
 
   componentDidMount() {
-    global.window.addEventListener('mousedown', this.onStartEvent, false);
+    global.window.addEventListener('mousedown', this.onDocumentMouseDown, false);
     global.window.addEventListener('mouseup', this.resetInsideClick, false);
     // if this component is mounting because of a click event, then that event can still get
     // captured by this listener unless we wait
-    setTimeout(() => window.addEventListener('click', this.onDocumentClick, false));
-    global.window.addEventListener('touchstart', this.onStartEvent, false);
+    this.clickHandlerTimeout = setTimeout(() =>
+      window.addEventListener('click', this.onDocumentClick, false));
+    global.window.addEventListener('touchstart', this.onDocumentTouchStart, false);
     global.window.addEventListener('touchend', this.onDocumentTouchEnd, false);
   },
 
@@ -44,21 +51,31 @@ const PageClick = React.createClass({
 
 
   componentWillUnmount() {
-    global.window.removeEventListener('mousedown', this.onStartEvent, false);
+    clearTimeout(this.clickHandlerTimeout);
+    clearTimeout(this.resetInsideClickTimeout);
+    clearTimeout(this.resetJustCalledOnClickTimeout);
+    global.window.removeEventListener('mousedown', this.onDocumentMouseDown, false);
     global.window.removeEventListener('mouseup', this.resetInsideClick, false);
     global.window.removeEventListener('click', this.onDocumentClick, false);
-    global.window.removeEventListener('touchstart', this.onStartEvent, false);
+    global.window.removeEventListener('touchstart', this.onDocumentTouchStart, false);
     global.window.removeEventListener('touchend', this.onDocumentTouchEnd, false);
   },
 
 
-  onStartEvent(event, ...args) {
+  onDocumentMouseDown(...args) {
+    if (this.insideClick || this.props.useEndEvent) {
+      return;
+    }
+    this.props.onClick(...args);
+  },
+
+
+  onDocumentTouchStart(event, ...args) {
     if (this.insideClick) {
       return;
     }
     if (this.props.useEndEvent) {
-      // if this event has touches, then save the first one
-      this.touchStart = event.touches ? event.touches[0] : null;
+      this.touchStart = extractCoordinates(event);
     } else {
       this.props.onClick(event, ...args);
     }
@@ -68,7 +85,7 @@ const PageClick = React.createClass({
   resetInsideClick() {
     if (this.props.useEndEvent) {
       // we don't want to reset insideClick until after onDocumentMouseClick has been triggered
-      setTimeout(() => {
+      this.resetInsideClickTimeout = setTimeout(() => {
         this.insideClick = false;
       });
     } else {
@@ -91,14 +108,14 @@ const PageClick = React.createClass({
     // so try and work out if we should call the onClick prop, on other browsers, onDocumentClick
     // will get called, so use a 'justCalledOnClick' flag to prevent calling onClick twice
     if (this.props.useEndEvent && this.touchStart && !this.insideClick) {
-      const {clientX, clientY} = event.changedTouches[0];
-      const dx = Math.abs(clientX - this.touchStart.clientX);
-      const dy = Math.abs(clientY - this.touchStart.clientY);
+      const {x, y} = extractCoordinates(event);
+      const dx = Math.abs(x - this.touchStart.x);
+      const dy = Math.abs(y - this.touchStart.y);
 
       if (dx < MAX_MOVE && dy < MAX_MOVE) {
         this.props.onClick(event, ...args);
         this.justCalledOnClick = true;
-        setTimeout(() => {
+        this.resetJustCalledOnClickTimeout = setTimeout(() => {
           this.justCalledOnClick = false;
         });
       }
