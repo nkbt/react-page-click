@@ -1,11 +1,12 @@
 import test from 'tape';
-import PageClick from '../src/PageClick';
+import {PageClick} from '../src/Component';
 
 
 test('PageClick', t => {
   t.ok(PageClick instanceof Function, 'should be function');
   t.end();
 });
+
 
 /* eslint no-warning-comments: 0 */
 /*

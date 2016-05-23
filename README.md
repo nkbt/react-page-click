@@ -17,7 +17,6 @@ React component-wrapper to detect page events (mousedown or touchstart/touchend)
 ## Installation
 
 ### NPM
-
 ```sh
 npm install --save react react-page-click
 ```
@@ -28,22 +27,6 @@ Don't forget to manually install peer dependencies (`react`) if you use npm@3.
 ### Bower:
 ```sh
 bower install --save https://npmcdn.com/react-page-click/bower.zip
-```
-
-or in `bower.json`
-
-```json
-{
-  "dependencies": {
-    "react-page-click": "https://npmcdn.com/react-page-click/bower.zip"
-  }
-}
-```
-
-then include as
-```html
-<script src="bower_components/react/react.js"></script>
-<script src="bower_components/react-page-click/build/react-page-click.js"></script>
 ```
 
 
@@ -57,7 +40,7 @@ then include as
 
 ## Demo
 
-[http://nkbt.github.io/react-page-click/example](http://nkbt.github.io/react-page-click/example)
+[http://nkbt.github.io/react-page-click](http://nkbt.github.io/react-page-click)
 
 ## Codepen demo
 
@@ -67,7 +50,7 @@ then include as
 
 Show only when `this.state.opened` and hide by click anywhere on a page outside of `.popup` element.
 
-```js
+```jsx
 {this.state.opened ? (
   <PageClick notify={() => this.setState({opened: false})}>
     <div className="popup">
@@ -80,10 +63,10 @@ Show only when `this.state.opened` and hide by click anywhere on a page outside 
 
 ## Modal window example
 
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PageClick from 'react-page-click';
+import {PageClick} from 'react-page-click';
 
 
 const styles = {
@@ -164,6 +147,7 @@ const App = React.createClass({
   }
 });
 
+
 const appRoot = document.createElement('div');
 document.body.appendChild(appRoot);
 ReactDOM.render(<App />, appRoot);
@@ -201,16 +185,15 @@ capture events on it.
 
 ## Development and testing
 
-Currently is being developed and tested with the latest stable `Node 5` on `OSX` and `Windows`.
-Should be ok with Node 4, but not guaranteed.
+Currently is being developed and tested with the latest stable `Node 6` on `OSX` and `Windows`.
 
-To run example covering all `PageClick` features, use `npm start`, which will compile `src/example/Example.js`
+To run example covering all `PageClick` features, use `npm start dev`, which will compile `src/example/Example.js`
 
 ```bash
 git clone git@github.com:nkbt/react-page-click.git
 cd react-page-click
 npm install
-npm start
+npm start dev
 
 # then
 open http://localhost:8080
@@ -219,13 +202,14 @@ open http://localhost:8080
 ## Tests
 
 ```bash
-npm test
-
-# to run tests in watch mode for development
-npm run test:dev
+# to run tests
+npm start test
 
 # to generate test coverage (./reports/coverage)
-npm run test:cov
+npm start test.cov
+
+# to run end-to-end tests
+npm start test.e2e
 ```
 
 ## License

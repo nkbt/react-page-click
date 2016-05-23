@@ -1,5 +1,5 @@
 import React from 'react';
-import PageClick from '../..';
+import {PageClick} from '../..';
 
 
 const styles = {
@@ -30,6 +30,7 @@ const styles = {
     padding: 50
   }
 };
+
 
 const Modal = React.createClass({
   propTypes: {
