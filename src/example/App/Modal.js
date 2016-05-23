@@ -1,5 +1,5 @@
 import React from 'react';
-import PageClick from '../..';
+import {ReactPageClick} from '../..';
 
 
 const styles = {
@@ -31,6 +31,7 @@ const styles = {
   }
 };
 
+
 const Modal = React.createClass({
   propTypes: {
     onClose: React.PropTypes.func.isRequired,
@@ -43,11 +44,11 @@ const Modal = React.createClass({
     return (
       <div>
         <div style={styles.shade} />
-        <PageClick notify={onClose} notifyOnTouchEnd={notifyOnTouchEnd}>
+        <ReactPageClick notify={onClose} notifyOnTouchEnd={notifyOnTouchEnd}>
           <div style={styles.popup}>
             <div style={styles.content} {...props} />
           </div>
-        </PageClick>
+        </ReactPageClick>
       </div>
     );
   }

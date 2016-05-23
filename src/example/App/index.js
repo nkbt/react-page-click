@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from './Modal.js';
-import {name} from '../../../package.json';
+import css from './App.css';
 
 
 const App = React.createClass({
@@ -35,8 +35,8 @@ const App = React.createClass({
     const {showModal, showLazyModal} = this.state;
 
     return (
-      <div>
-        <h1>{name}</h1>
+      <div className={css.app}>
+        <h1>react-page-click</h1>
 
         <button onClick={this.showModal}>
           Open Modal
@@ -65,6 +65,4 @@ const App = React.createClass({
     );
   }
 });
-
-
 export default App;

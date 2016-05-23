@@ -1,7 +1,7 @@
 {
   "name": "react-page-click",
-  "version": "1.0.0",
-  "description": "React component-wrapper to detect page clicks (outside of wrapped element).",
+  "version": "0.0.0",
+  "description": "React component-wrapper to detect page events (mousedown or touchstart/touchend) outside of wrapped element.",
   "main": [
     "build/react-page-click.js",
     "build/react-page-click.js.map",
@@ -24,12 +24,12 @@
     "click outside"
   ],
   "authors": [
-    "Nik Butenko <nik@butenko.me> (http://butenko.me/)"
+    "Nik Butenko <nik@butenko.me>"
   ],
   "license": "MIT",
   "homepage": "https://github.com/nkbt/react-page-click",
   "dependencies": {
-    "react": "^0.14"
+    "react": "^0.14 || ^15"
   },
   "ignore": [
     "**/.*",

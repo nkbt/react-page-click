@@ -1,24 +1,25 @@
 import test from 'tape';
-import PageClick from '../src/PageClick';
+import {ReactPageClick} from '../src/Component';
 
 
-test('PageClick', t => {
-  t.ok(PageClick instanceof Function, 'should be function');
+test('ReactPageClick', t => {
+  t.ok(ReactPageClick instanceof Function, 'should be function');
   t.end();
 });
+
 
 /* eslint no-warning-comments: 0 */
 /*
 TODO: Convert to Tape tests
 
-describe('PageClick', () => {
+describe('ReactPageClick', () => {
   it('should be ok', () => {
-    expect(PageClick).toBeTruthy();
+    expect(ReactPageClick).toBeTruthy();
   });
 
 
   it('should require the only child to be present', () => {
-    expect(() => TestUtils.renderIntoDocument(<PageClick notify={() => {}} />))
+    expect(() => TestUtils.renderIntoDocument(<ReactPageClick notify={() => {}} />))
       .toThrow();
   });
 
@@ -31,7 +32,8 @@ describe('PageClick', () => {
 
 
     it('should subscribe to mousedown on render', () => {
-      TestUtils.renderIntoDocument(<PageClick notify={() => {}}><span>Test</span></PageClick>);
+      TestUtils.renderIntoDocument(
+        <ReactPageClick notify={() => {}}><span>Test</span></ReactPageClick>);
 
       expect(global.window.addEventListener).toHaveBeenCalled();
       expect(global.window.addEventListener.calls.mostRecent().args[0]).toEqual('mousedown');
@@ -41,7 +43,7 @@ describe('PageClick', () => {
     it('should unsubscribe on destroy', () => {
       const div = document.createElement('div');
 
-      React.render(<PageClick notify={() => {}}><span>Test</span></PageClick>, div);
+      React.render(<ReactPageClick notify={() => {}}><span>Test</span></ReactPageClick>, div);
 
       const onMouseDown = global.window.addEventListener.calls.mostRecent().args[1];
 
@@ -62,7 +64,7 @@ describe('PageClick', () => {
       spyOn(global.window, 'addEventListener');
       notify = jasmine.createSpy('notify');
       pageClick = TestUtils.renderIntoDocument(
-        <PageClick notify={notify}><span>Test</span></PageClick>);
+        <ReactPageClick notify={notify}><span>Test</span></ReactPageClick>);
       onMouseDown = global.window.addEventListener.calls.mostRecent().args[1];
     });
 
@@ -118,7 +120,7 @@ describe('PageClick', () => {
       spyOn(global.window, 'addEventListener');
       notify = jasmine.createSpy('notify');
       pageClick = TestUtils.renderIntoDocument(
-        <PageClick notify={notify} outsideOnly={false}><span>Test</span></PageClick>);
+        <ReactPageClick notify={notify} outsideOnly={false}><span>Test</span></ReactPageClick>);
       onMouseDown = global.window.addEventListener.calls.mostRecent().args[1];
     });
 
