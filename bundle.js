@@ -20196,7 +20196,7 @@
 	  onDocumentMouseDown: function onDocumentMouseDown() {
 	    var _props;
 	
-	    if (this.insideClick || this.props.notifyOnTouchEnd) {
+	    if (this.insideClick) {
 	      return;
 	    }
 	    (_props = this.props).notify.apply(_props, arguments);
