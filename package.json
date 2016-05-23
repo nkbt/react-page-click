@@ -1,6 +1,6 @@
 {
   "name": "react-page-click",
-  "version": "2.1.2",
+  "version": "3.0.0",
   "description": "React component-wrapper to detect page events (mousedown or touchstart/touchend) outside of wrapped element.",
   "main": "lib/index.js",
   "config": {
