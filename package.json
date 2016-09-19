@@ -7,8 +7,9 @@
     "component": "ReactPageClick"
   },
   "scripts": {
-    "start": "p-s --config react-component-template/package-scripts -s",
+    "start": "react-component-template",
     "test": "npm start test",
+    "template": "cf-react-component-template",
     "precommit": "npm start precommit",
     "prepush": "npm start prepush",
     "postversion": "npm start postversion",
@@ -39,7 +40,7 @@
     "react": "^0.14 || ^15"
   },
   "devDependencies": {
-    "p-s": "0.9.0",
-    "react-component-template": "0.1.2"
+    "react-component-template": "0.1.7",
+    "cf-react-component-template": "0.1.7"
   }
 }
