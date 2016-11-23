@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/nkbt/react-page-click",
   "peerDependencies": {
-    "react": "^0.14 || ^15"
+    "react": "^15.3.1"
   },
   "devDependencies": {
     "react-component-template": "0.1.9",
