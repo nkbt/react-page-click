@@ -1,6 +1,6 @@
 import React from 'react';
 import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
-
+import PropTypes from 'prop-types';
 
 const MAX_MOVE = 20;
 
@@ -8,15 +8,18 @@ const MAX_MOVE = 20;
 const extractCoordinates = ({changedTouches}) =>
   ({x: changedTouches[0].screenX, y: changedTouches[0].screenY});
 
-
-export const ReactPageClick = React.createClass({
+class ReactPageClick extends React.Component {
+  constructor(props) {
+    super(props);
+  },
+  
   propTypes: {
-    children: React.PropTypes.node.isRequired,
-    notify: React.PropTypes.func.isRequired,
-    onMouseDown: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
-    outsideOnly: React.PropTypes.bool,
-    notifyOnTouchEnd: React.PropTypes.bool
+    children: PropTypes.node.isRequired,
+    notify: PropTypes.func.isRequired,
+    onMouseDown: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    outsideOnly: PropTypes.bool,
+    notifyOnTouchEnd: PropTypes.bool
   },
 
 
@@ -121,3 +124,5 @@ export const ReactPageClick = React.createClass({
     return React.cloneElement(React.Children.only(this.props.children), props);
   }
 });
+
+export default ReactPageClick;
