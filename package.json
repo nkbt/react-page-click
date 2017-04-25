@@ -40,6 +40,7 @@
     "react": "^0.14 || ^15"
   },
   "devDependencies": {
+    "prop-types": "^15.5.8",
     "react-component-template": "0.1.9",
     "cf-react-component-template": "0.1.8"
   }
