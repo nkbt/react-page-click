@@ -1,5 +1,4 @@
 import React from 'react';
-import {shouldComponentUpdate} from 'react/lib/ReactComponentWithPureRenderMixin';
 import PropTypes from 'prop-types';
 
 const MAX_MOVE = 20;
@@ -8,7 +7,7 @@ const MAX_MOVE = 20;
 const extractCoordinates = ({changedTouches}) =>
   ({x: changedTouches[0].screenX, y: changedTouches[0].screenY});
 
-class ReactPageClick extends React.Component {
+class ReactPageClick extends React.PureComponent {
   constructor(props) {
     super(props);
   },
@@ -43,9 +42,6 @@ class ReactPageClick extends React.Component {
     global.window.addEventListener('touchstart', this.onDocumentTouchStart, false);
     global.window.addEventListener('touchend', this.onDocumentTouchEnd, false);
   },
-
-
-  shouldComponentUpdate,
 
 
   componentWillUnmount() {
