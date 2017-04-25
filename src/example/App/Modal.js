@@ -1,6 +1,6 @@
 import React from 'react';
 import {ReactPageClick} from '../..';
-
+import PropTypes from 'prop-types';
 
 const styles = {
   popup: {
@@ -31,11 +31,10 @@ const styles = {
   }
 };
 
-
-const Modal = React.createClass({
+class Modal extends React.Component {
   propTypes: {
-    onClose: React.PropTypes.func.isRequired,
-    notifyOnTouchEnd: React.PropTypes.bool
+    onClose: PropTypes.func.isRequired,
+    notifyOnTouchEnd: PropTypes.bool
   },
 
   render() {
@@ -52,7 +51,7 @@ const Modal = React.createClass({
       </div>
     );
   }
-});
+};
 
 
 export default Modal;
