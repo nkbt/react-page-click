@@ -2,15 +2,14 @@ import React from 'react';
 import Modal from './Modal.js';
 import css from './App.css';
 
-
-const App = React.createClass({
-  getInitialState() {
-    return {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       showModal: false,
       showLazyModal: false
-    };
+    }
   },
-
 
   showModal() {
     this.setState({showModal: true});
