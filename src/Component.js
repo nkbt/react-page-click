@@ -123,6 +123,6 @@ class ReactPageClick extends React.Component {
 
     return React.cloneElement(React.Children.only(this.props.children), props);
   }
-});
+};
 
 export default ReactPageClick;
