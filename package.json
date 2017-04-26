@@ -43,7 +43,7 @@
     "react": ">=15.3"
   },
   "devDependencies": {
-    "react-component-template": "0.1.9",
+    "react-component-template": "0.1.10",
     "cf-react-component-template": "0.1.8"
   }
 }
