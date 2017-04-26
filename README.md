@@ -179,7 +179,7 @@ capture events on it.
 
 ## Development and testing
 
-Currently is being developed and tested with the latest stable `Node 6` on `OSX` and `Windows`.
+Currently is being developed and tested with the latest stable `Node 7` on `OSX` and `Windows`.
 
 To run example covering all `ReactPageClick` features, use `npm start dev`, which will compile `src/example/Example.js`
 
