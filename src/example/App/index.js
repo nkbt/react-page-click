@@ -44,17 +44,15 @@ class App extends React.Component {
         </button>
         &nbsp;Closes on mouse down or touch end events
 
-        {showModal ? (
+        {showModal ?
           <Modal onClose={this.hideModal}>
             Modal content
-          </Modal>
-        ) : null}
+          </Modal> : null}
 
-        {showLazyModal ? (
-          <Modal onClose={this.hideLazyModal} notifyOnTouchEnd>
+        {showLazyModal ?
+          <Modal onClose={this.hideLazyModal} notifyOnTouchEnd={true}>
             Lazy Modal content
-          </Modal>
-        ) : null}
+          </Modal> : null}
       </div>
     );
   }
