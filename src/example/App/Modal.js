@@ -1,6 +1,6 @@
 import React from 'react';
 import {ReactPageClick} from '../..';
-import PropTypes from 'prop-types';
+
 
 const styles = {
   popup: {
@@ -31,26 +31,25 @@ const styles = {
   }
 };
 
-class Modal extends React.Component {
-  propTypes: {
-    onClose: PropTypes.func.isRequired,
-    notifyOnTouchEnd: PropTypes.bool
-  },
 
-  render() {
-    const {onClose, notifyOnTouchEnd, ...props} = this.props;
+function Modal(props) {
+  const {onClose, notifyOnTouchEnd, ...rest} = props;
 
-    return (
-      <div>
-        <div style={styles.shade} />
-        <ReactPageClick notify={onClose} notifyOnTouchEnd={notifyOnTouchEnd}>
-          <div style={styles.popup}>
-            <div style={styles.content} {...props} />
-          </div>
-        </ReactPageClick>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <div style={styles.shade} />
+      <ReactPageClick notify={onClose} notifyOnTouchEnd={notifyOnTouchEnd}>
+        <div style={styles.popup}>
+          <div style={styles.content} {...rest} />
+        </div>
+      </ReactPageClick>
+    </div>
+  );
+}
+
+Modal.propTypes = {
+  onClose: React.PropTypes.func.isRequired,
+  notifyOnTouchEnd: React.PropTypes.bool
 };
 
 
