@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+
 import {ReactPageClick} from '../..';
 
 
@@ -48,8 +51,8 @@ function Modal(props) {
 }
 
 Modal.propTypes = {
-  onClose: React.PropTypes.func.isRequired,
-  notifyOnTouchEnd: React.PropTypes.bool
+  onClose: PropTypes.func.isRequired,
+  notifyOnTouchEnd: PropTypes.bool
 };
 
 

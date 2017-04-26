@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const MAX_MOVE = 20;
@@ -15,12 +16,12 @@ export class ReactPageClick extends React.PureComponent {
   };
 
   static propTypes = {
-    children: React.PropTypes.node.isRequired,
-    notify: React.PropTypes.func.isRequired,
-    onMouseDown: React.PropTypes.func,
-    onTouchStart: React.PropTypes.func,
-    outsideOnly: React.PropTypes.bool,
-    notifyOnTouchEnd: React.PropTypes.bool
+    children: PropTypes.node.isRequired,
+    notify: PropTypes.func.isRequired,
+    onMouseDown: PropTypes.func,
+    onTouchStart: PropTypes.func,
+    outsideOnly: PropTypes.bool,
+    notifyOnTouchEnd: PropTypes.bool
   };
 
   componentWillMount() {
