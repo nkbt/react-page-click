@@ -24,12 +24,6 @@ npm install --save react react-page-click
 Don't forget to manually install peer dependencies (`react`) if you use npm@3.
 
 
-### Bower:
-```sh
-bower install --save https://unpkg.com/react-page-click/bower.zip
-```
-
-
 ### 1998 Script Tag:
 ```html
 <script src="https://unpkg.com/react/dist/react.js"></script>
@@ -185,7 +179,7 @@ capture events on it.
 
 ## Development and testing
 
-Currently is being developed and tested with the latest stable `Node 6` on `OSX` and `Windows`.
+Currently is being developed and tested with the latest stable `Node 7` on `OSX` and `Windows`.
 
 To run example covering all `ReactPageClick` features, use `npm start dev`, which will compile `src/example/Example.js`
 
