@@ -1,1 +1,0 @@
-export {ReactPageClick} from './Component';
